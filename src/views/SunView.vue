@@ -16,18 +16,18 @@
                     <div class="chart-controls">
                         <h3><i class="fas fa-chart-line"></i> 城市水旱灾害分析</h3>
                         <div class="city-buttons">
-                            <button class="city-btn" :class="{ 'active': activeCity === '开封' }"
-                                @click="setActiveCity('开封')">开封</button>
-                            <button class="city-btn" :class="{ 'active': activeCity === '洛阳' }"
-                                @click="setActiveCity('洛阳')">洛阳</button>
-                            <button class="city-btn" :class="{ 'active': activeCity === '西安' }"
-                                @click="setActiveCity('西安')">西安</button>
+                            <button class="city-btn" :class="{ 'active': activeCity === 0 }"
+                                @click="setActiveCity(0)">开封</button>
+                            <button class="city-btn" :class="{ 'active': activeCity === 1 }"
+                                @click="setActiveCity(1)">洛阳</button>
+                            <button class="city-btn" :class="{ 'active': activeCity === 2 }"
+                                @click="setActiveCity(2)">西安</button>
                         </div>
                     </div>
-                    <div id="lineChart" style="height: 100%;"></div>
+                    <div id="lineChart" style="height: 100%;" @mouseenter="onLineChartEnter" @mouseleave="onLineChartLeave"></div>
                 </div>
                 <div class="pie-chart-container">
-                    <div class="chart-title"><i class="fas fa-chart-pie"></i> 黄河治水策略</div>
+                    <div class="chart-title"><i class="fas fa-chart-pie"></i>黄河治水策略</div>
                     <div id="pieChartContainer" style="height: 100%;"></div>
                 </div>
             </div>
@@ -41,36 +41,26 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import * as L from 'leaflet';
+import { ref, onMounted, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
-import 'vue3-timeline/dist/style.css'
-import * as TL from 'vue3-timeline'
 import { useStore } from '@/stores/useStore';
 import { cityData, timelineData } from '@/js&ts/sunViewData'
 
 import '@/styles/sunView.less'
 
 const pStore = useStore()
-const activeCity = ref('开封');
+const activeCity = ref<number>(0);
+const cities = ['开封', '洛阳', '西安']
 const selectedPeriods = ref<string[]>(['古代发展萌芽期', '古代发展繁荣期', '古代向现代转变期', '现代发展繁荣期']);
 
-const setActiveCity = (city: string) => {
+const setActiveCity = (city: number) => {
     activeCity.value = city;
-    updateLineChart(city);
+    updateLineChart(cities[city]);
 };
 
 const mapContainer = ref<HTMLDivElement | null>(null);
 const timelineContainer = ref<HTMLDivElement | null>(null);
-
-onMounted(() => {
-    pStore.setNavOption('sunView')
-    pStore.title = '历史大事与治水之智'
-    pStore.curRouteName = 'sunView'
-    initMap();
-    initTimeline();
-    initCharts();
-});
+var lineInterval = null
 
 const initMap = () => {
     const map = L.map(mapContainer.value!, {
@@ -111,14 +101,12 @@ const initTimeline = () => {
 const initCharts = () => {
     const lineChart = echarts.init(document.getElementById('lineChart')!);
     const pieChart = echarts.init(document.getElementById('pieChartContainer')!);
-
     window.addEventListener('resize', () => {
         lineChart.resize();
         pieChart.resize();
     });
-
     initPieChart(pieChart);
-    updateLineChart(activeCity.value);
+    updateLineChart(cities[activeCity.value]);
 };
 
 const initPieChart = (pieChart: any) => {
@@ -128,7 +116,6 @@ const initPieChart = (pieChart: any) => {
         { name: '运河及关联水系', value: 2 },
         { name: '全流域治理', value: 6 }
     ];
-
     const option = {
         series: [{
             type: 'pie',
@@ -136,57 +123,220 @@ const initPieChart = (pieChart: any) => {
             data: data
         }]
     };
-
     pieChart.setOption(option);
 };
 
 const updateLineChart = (city: string) => {
     const lineChart = echarts.getInstanceByDom(document.getElementById('lineChart')!);
-
     const currentData = cityData[city];
-
     const disasterSeries = currentData.disasters.map(item => ({
         year: item.year,
         flood: item.flood,
         drought: item.drought
     }));
-
     const tempSeries = currentData.temperatures.filter(item => item.temp !== null).map(item => ({
         year: item.year,
         temp: item.temp
     }));
 
+    // 计算Y轴动态范围
+    const maxFlood = Math.max(...disasterSeries.map(d => d.flood));
+    const maxDrought = Math.max(...disasterSeries.map(d => d.drought));
+    const disasterMax = Math.max(maxFlood, maxDrought);
+    const y1Max = Math.ceil(disasterMax / 5) * 5;
+    const temps = tempSeries.map(t => t.temp);
+    const tempMin = Math.min(...temps);
+    const tempMax = Math.max(...temps);
+    const padding = 0.2;
+    // 清空当前图表
+    lineChart.clear();
+
     const option = {
+        // 新增动画配置
+        animation: true,
+        animationDuration: 2000,
+        animationEasing: 'cubicOut',
+
         title: {
             text: `${city}历史水旱灾害与温度变化`,
             left: 'center'
         },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        legend: {
+            data: ['水灾次数', '旱灾次数', '距平温度'],
+            top: 30
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
         xAxis: {
             type: 'category',
-            data: disasterSeries.map(d => d.year.toString())
+            boundaryGap: false,
+            data: Array.from({ length: 33 }, (_, i) => -200 + i * 50),
+            axisLabel: {
+                formatter: function (value) {
+                    return value === 0 ? '0' : value + '';
+                }
+            },
+            name: '年份',
+            nameLocation: 'middle',
+            nameGap: 18
         },
-        yAxis: [{
-            type: 'value',
-            name: '灾害次数'
-        }],
-        series: [{
-            name: '水灾次数',
-            type: 'line',
-            data: disasterSeries.map(d => d.flood)
-        }, {
-            name: '旱灾次数',
-            type: 'line',
-            data: disasterSeries.map(d => d.drought)
-        }, {
-            name: '距平温度',
-            type: 'line',
-            yAxisIndex: 1,
-            data: tempSeries.map(t => t.temp)
-        }]
+        yAxis: [
+            {
+                type: 'value',
+                name: '灾害次数',
+                position: 'left',
+                min: 0,
+                max: y1Max,
+                interval: Math.ceil(y1Max / 5),
+                axisLine: { lineStyle: { color: '#5470C6' } }
+            },
+            {
+                type: 'value',
+                name: '距平温度(℃)',
+                position: 'right',
+                min: (tempMin - padding).toFixed(1),
+                max: (tempMax + padding).toFixed(1),
+                interval: 0.2,
+                axisLine: { lineStyle: { color: '#EE6666' } }
+            }
+        ],
+        series: [
+            {
+                name: '水灾次数',
+                type: 'line',
+                data: disasterSeries.map(d => d.flood),
+                smooth: true,
+                lineStyle: {
+                    width: 2,
+                    color: '#5470C6',
+                    opacity: 0.8 // 初始透明度
+                },
+                itemStyle: {
+                    color: '#5470C6',
+                    opacity: 0 // 初始隐藏数据点
+                },
+                // 新增动画配置
+                animationDelay: function (idx) {
+                    return idx * 50; // 按数据点顺序延迟
+                },
+                emphasis: {
+                    lineStyle: {
+                        opacity: 1 // 悬停时全显
+                    },
+                    itemStyle: {
+                        opacity: 1
+                    }
+                }
+            },
+            {
+                name: '旱灾次数',
+                type: 'line',
+                data: disasterSeries.map(d => d.drought),
+                smooth: true,
+                lineStyle: {
+                    width: 2,
+                    color: '#91CC75',
+                    opacity: 0.8
+                },
+                itemStyle: {
+                    color: '#91CC75',
+                    opacity: 0
+                },
+                animationDelay: function (idx) {
+                    return idx * 50 + 200; // 增加基础延迟
+                },
+                emphasis: {
+                    lineStyle: {
+                        opacity: 1
+                    },
+                    itemStyle: {
+                        opacity: 1
+                    }
+                }
+            },
+            {
+                name: '距平温度',
+                type: 'line',
+                yAxisIndex: 1,
+                data: tempSeries.map(t => t.temp),
+                smooth: true,
+                lineStyle: {
+                    width: 2,
+                    color: '#EE6666',
+                    opacity: 0.8
+                },
+                itemStyle: {
+                    color: '#EE6666',
+                    opacity: 0
+                },
+                animationDelay: function (idx) {
+                    return idx * 30 + 400; // 不同线条不同延迟
+                },
+                emphasis: {
+                    lineStyle: {
+                        opacity: 1
+                    },
+                    itemStyle: {
+                        opacity: 1
+                    }
+                }
+            }
+        ]
     };
-
-    lineChart.setOption(option);
+    // 分阶段渲染
+    lineChart.setOption(option, {
+        lazyUpdate: true,
+        silent: true
+    });
+    // 添加过渡效果监听
+    lineChart.on('finished', () => {
+        // 动画结束后显示数据点
+        lineChart.setOption({
+            series: [
+                { itemStyle: { opacity: 1 } },
+                { itemStyle: { opacity: 1 } },
+                { itemStyle: { opacity: 1 } }
+            ]
+        });
+    });
 };
+function onLineChartEnter() {
+    clearInterval(lineInterval);
+}
+function onLineChartLeave() {
+    lineInterval = setInterval(() => {
+        activeCity.value = (activeCity.value + 1) % cities.length;
+        const city: string = cities[activeCity.value];
+        updateLineChart(city)
+    }, 4500);
+}
+onMounted(() => {
+    pStore.setNavOption('sunView')
+    pStore.title = '历史大事与治水之智'
+    pStore.curRouteName = 'sunView'
+    initMap();
+    initTimeline();
+    initCharts();
+    // 定时切换函数
+    lineInterval = setInterval(() => {
+        activeCity.value = (activeCity.value + 1) % cities.length;
+        const city: string = cities[activeCity.value];
+        updateLineChart(city)
+    }, 4500);
+});
+onUnmounted(() => {
+    clearInterval(lineInterval);
+})
 </script>
 <style lang="less" scoped>
 .sun-view-container {

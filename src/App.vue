@@ -20,11 +20,11 @@
           第三页面
           <div class="bottom-bar" v-show="curRoute == 'thirdPage'"></div>
         </a>
-        <!-- <a @click="jumpTo({name: 'sunView'})" class="nav-item"
+        <a @click="jumpTo({name: 'sunView'})" class="nav-item"
           :style="`background-color: ${curRoute == 'sunView' ? 'var(--itemBgcHight)' : ''};`">
           历史大事与治水之智
           <div class="bottom-bar" v-show="curRoute == 'sunView'"></div>
-        </a> -->
+        </a>
       </div>
     </div>
   </transition>

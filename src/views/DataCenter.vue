@@ -150,7 +150,6 @@ const lbChart = ref<HTMLDivElement | null>(null);
 const rtChart = ref<HTMLDivElement | null>(null);
 const mChart = ref<HTMLDivElement | null>(null);
 const mbChart = ref<HTMLDivElement | null>(null);
-
 var lbChartIns: echarts.ECharts | null = null;
 var rtChartIns: echarts.ECharts | null = null;
 var mChartIns: echarts.ECharts | null = null;
