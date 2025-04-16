@@ -1,0 +1,75 @@
+interface news {
+    date: string
+    title: string
+    href: string
+}
+interface culture{
+    name: string
+    time: string
+}
+
+export const newsList: news[] = [
+    { date: '2020-11-27', title: '文化和旅游部：保护好、传承好、弘扬好黄河文化', href: 'https://www.gov.cn/xinwen/2020-11/27/content_5565283.htm' },
+    { date: '2021-10-08', title: '《黄河流域生态保护和高质量发展规划纲要》', href: 'https://www.gov.cn/zhengce/2021-10/08/content_5641438.htm' },
+    { date: '2021-10-27', title: '文化与风光融合 保护与开发互促 —— 黄河流域文旅资源丰富', href: 'https://www.gov.cn/xinwen/2021-10/27/content_5645104.htm' },
+    { date: '2022-02-22', title: '水利部印发《“十四五” 水文化建设规划》', href: 'http://mwr.gov.cn/xw/slyw/2022-02/t20220222_1562520.html' },
+    { date: '2022-06-21', title: '《黄河文化保护传承弘扬规划》', href: 'https://www.gov.cn/xinwen/2022-06/21/content_5696887.htm' },
+    { date: '2022-07-18', title: '《黄河文物保护利用规划》', href: 'http://www.ncha.gov.cn/art/2022-07/18/art_722_175826.html' },
+    { date: '2022-09-20', title: '加快推进黄河水文化建设的思路与措施', href: 'https://www.waterinfo.com.cn/xsyj/tszs/2022-09/t20220920_34866.html' },
+    { date: '2022-10-30', title: '《中华人民共和国黄河保护法》', href: 'https://www.ihchina.cn/zhengce_details/26082' },
+    { date: '2022-12-01', title: '《中华人民共和国黄河保护法》（国家林业和草原局版）', href: 'https://www.forestry.gov.cn/c/www/zchz/31866.jhtml' },
+    { date: '2023-09-20', title: '黄河正成为造福人民的幸福河', href: 'https://www.ndrc.gov.cn/wsdwhfz/2023-09/t20230920_1360736.html' },
+    { date: '2024-03-14', title: '《黄河文化保护传承弘扬的形势分析及对策建议》', href: 'https://hhwhy.lzu.edu.cn/c/2024-03/213.html' },
+    { date: '2024-09-19', title: '讲好 “黄河故事” 坚定文化自信', href: 'https://www.chinawater.com.cn/ztgz/xwzt/dhwnzb/sjkt/2024-09/t20240919_1056770.html' },
+    { date: '2024-10-14', title: '《深入挖掘黄河文化的时代价值》', href: 'http://www.qstheory.cn/dukan/hqwg/2024-10/14/c_1130209358.htm' },
+    { date: '2025-01-06', title: '2025 黄河国家战略新年论坛', href: 'https://yrcsd.henu.edu.cn/info/1058/13802.htm' },
+    { date: '2025-02-19', title: '《黄河水利委员会推进黄河工程与文化融合建设规范提升》', href: 'http://www.mwr.gov.cn/xw/sjzs/2025-02/t20250219_1727834.html' },
+    { date: '2025-03-08', title: '《大河新潮起 文脉古今承 —— 黄河水文化建设回眸》', href: 'http://www.yrcc.gov.cn/xwdt/ztbd/2024-hhlygzlfz/2024-hhlygzlfz-sd/2024-09/t20240930_436578.html' },
+    { date: '2025-03-08', title: '《大河新潮起 文脉古今承 —— 黄河水文化建设回眸》（重复条目）', href: 'http://www.yrcc.gov.cn/xwdt/ztbd/2024-hhlygzlfz/2024-hhlygzlfz-sd/2024-09/t20240930_436578.html' },
+    { date: '2025-03-14', title: '首批黄河水利遗产名录', href: 'http://www.yrcc.gov.cn/zwzc/tzgg/2025-03/t20250314_440604.html' },
+    { date: '2025-03-18', title: '《黄河文化保护传承弘扬规划》印发实施', href: 'https://www.ndrc.gov.cn/xwdt/gdzt/dyhgjwhgy/2022-06/t20220623_1327728.html' },
+    { date: '2025-03-25', title: '《山东省黄河流域生态保护和高质量发展规划》', href: 'http://www.shandong.gov.cn/art/2022-02/15/art_107860_117496.html' },
+    { date: '2025-03-28', title: '治水史诗中的文明回响 —— 黄委推进黄河水利遗产系统性管理保护综述', href: 'http://www.yrcc.gov.cn/hhwh/whcz/2025-03/t20250328_441028.html' },
+    { date: '2025-04-01', title: '治水史诗中的文明回响 —— 黄委推进黄河水利遗产系统性管理保护综述', href: 'http://www.yrcc.gov.cn/hhwh/whcz/2025-03/t20250328_441028.html' },
+]
+export const cultureList: culture[] = [
+{time:'公元前2.6万年–1.6万 年',name: '峙峪文化'},
+{time:'公元前 2.4万年–1.2万年',name: '下川文化'},
+{time:'公元前2.3万年–8,000 年',name: '小南海文化'},
+{time:'公元前 6,000–3,000 年',name: '大地湾文化'},
+{time:'公元前 6,000–5,000 年',name: '老官台文化'},
+{time:'公元前6,200–5,000 年',name: '裴李岗文化'},
+{time:'公元前 6,100–5,600 年',name: '磁山文化'},
+{time:'公元前 6,500–5,500 年',name: '后李文化'},
+{time:'公元前 7,000-5,800年',name: '贾湖文化'},
+{time:'公元前3,300-2,000年',name: '马家窑文化'},
+{time:'公元前 2,500-1,900年',name: '海生不浪文化'},
+{time:'公元前5,900–4,500 年',name: '辛文化'},
+{time:'公元前 4,300–2,600 年',name: '大汶口文化'},
+{time:'公元前 3,000–2,000 年',name: '阿善文化'},
+{time:'公元前 2,500–1,800 年',name: '老虎山文化'},
+{time:'公元前 2,200–1,600 年',name: '齐家文化'},
+{time:'公元前 3,000–2,500 年',name: '庙底沟二期文化'},
+{time:'公元前 2,300–1,800 年',name: '客省庄文化'},
+{time:'公元前 2,500–1,900 年',name: '陶寺文化'},
+{time:'公元前 2,500–1,900 年',name: '后岗二期文化'},
+{time:'公元前 2,300–1,800 年',name: '造律台文化（王油坊文化）'},
+{time:'公元前2,500–1,900 年',name: '山东龙山文化'},
+{time:'公元前 1,900–1,700 年',name: '新砦期文化'},
+{time:'公元前1,800–1,500 年',name: '二里头文化'},
+{time:'公元前 1,800–1,500 年',name: '下七垣文化'},
+{time:'公元前 1,900–1,500 年',name: '岳石文化'},
+{time:'公元前 1,600–1,300 年',name: '二里岗文化'},
+{time:'公元前 1,300–1,046 年',name: '殷墟文化'},
+{time:'公元前 1,600–600 年',name: '卡约文化'},
+{time:'公元前 1,200–800 年',name: '刘家文化'},
+{time:'公元前 1,200–1,046 年',name: '先周文化'},
+{time:'公元前 1,300–800 年',name: '李家崖文化'},
+{time:'公元前 1,500–1,000 年',name: '光社文化'},
+{time:'公元前 2,000–1,400 年',name: '朱开沟文化'},
+{time:'公元前 1,400–700 年',name: '辛店文化'},
+{time:'公元前 2,000–1,500 年',name: '早期华夏文化'},
+{time:'公元前 1,400–700 年',name: '寺洼文化'},
+{time:'公元前 700–300 年',name: '桃红巴拉文化'},
+{time:'约 500–200 年',name: '毛庆沟文化'},
+]

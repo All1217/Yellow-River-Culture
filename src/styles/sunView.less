@@ -1,0 +1,352 @@
+.header {
+    /* background: linear-gradient(135deg, #7cc655bd 0%, #207cca 100%); */
+    color: rgb(10, 9, 9);
+    /* padding: 20px; */
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 40;
+    /* gap: 0; */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+}
+
+/* 主容器布局 */
+.container {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    /* gap: 20px; */
+    height: calc(100% - 80px);
+    min-height: 600px;
+}
+
+/* 左侧面板 */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    /* gap: 20px; */
+    min-height: 115.5%;
+    height: calc(100vh - 140px);
+    /* 根据header高度调整 */
+}
+
+/* 地图容器 */
+.map-container {
+    /* height: calc(66.66% - 10px); */
+    height: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* overflow: hidden; */
+    position: relative;
+}
+
+/* 底部左侧面板 */
+.bottom-left-panel {
+    display: flex;
+    /* height: calc(33.33% - 10px); */
+    flex-direction: column;
+    height: 500px;
+    /* gap: 20px; */
+    /* height: auto; */
+    min-height: 300px;
+    // background-image: url('浅色背景4.6bb868a0.png');
+}
+
+/* 时间轴容器 */
+.timeline-container {
+    flex: 2;
+    /* background-image: url('浅色背景4.6bb868a0.png'); */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(42, 107, 198, 0.703);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    /* background-image: url('浅色背景4.6bb868a0.png'); */
+    background: rgba(255, 255, 255, 0.9);
+    /* 半透明白色基底 */
+    // background-image: url('浅色背景4.6bb868a0.png');
+    /* 替换为你的背景图路径 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    /* 调整透明度 */
+    z-index: -1;
+    overflow-y: auto !important;
+}
+
+/* 确保时间轴内容可滚动 */
+/* .timeline-container .tl-timeline {
+    height: 100% !important;
+    overflow-y: auto !important;
+} */
+.tl-timeline {
+    flex: 1;
+    min-height: 0;
+    /* 重要：允许内容收缩 */
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.7);
+    /* 增强文字可读性 */
+    height: 100% !important;
+    overflow-y: auto !important;
+}
+
+
+/* 事件详情样式调整 */
+.event-details {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.event-details h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.event-content {
+    height: calc(100% - 30px);
+    overflow-y: auto;
+}
+
+/* 右侧面板 */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    /* gap: 15px; */
+    height: 100%;
+
+    /* overflow: hidden; */
+}
+
+/* 折线图容器 */
+.chart-container {
+    flex: 1;
+    /* height: flex; */
+    height: 100%;
+    min-height: 400px;
+    /* max-height: 45vh; */
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    // background-image: url('浅色背景4.6bb868a0.png');
+}
+
+.chart-controls {
+    margin-bottom: 15px;
+    h3{
+        text-align: center;
+    }
+}
+
+.city-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 30%;
+}
+
+.city-btn {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.city-btn.active {
+    background: #1e5799;
+    color: white;
+    border-color: #1e5799;
+}
+
+/* 饼图容器 */
+.pie-chart-container {
+    flex: 1;
+    /* height: 600px; */
+    min-height: 480px;
+    /* max-height: 55vh; */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    /* min-height: 500px; */
+    position: relative;
+    // background-image: url('浅色背景4.6bb868a0.png');
+}
+
+#lineChart {
+    width: 100%;
+    /* height: 100%; */
+    min-height: 300px;
+    /* height: 400px; */
+    height: calc(100%-40px);
+    /* padding: 20px; */
+}
+
+#pieChartContainer {
+    width: 100%;
+    /* height: 100%; */
+    min-height: 400px;
+    /* height: 400px; */
+    height: calc(100%-40px);
+    /* padding: 20px; */
+}
+
+/* 添加标题容器样式 */
+.pie-chart-container .chart-title {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.period-filter {
+    position: absolute;
+    left: 20px;
+    bottom: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 160px;
+    transition: all 0.3s ease;
+}
+
+
+/* 增强图例样式 */
+.info.legend {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.info.legend h4 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.info.legend i {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* 增强联动效果 */
+.tl-slide.highlighted {
+    box-shadow: 0 0 0 3px #1e5799;
+    transition: box-shadow 0.3s;
+}
+
+.tl-slide[data-unique-id] {
+    transition: box-shadow 0.3s;
+}
+
+/* 修复标记点击效果 */
+.leaflet-interactive {
+    transition: all 0.3s ease;
+}
+
+
+.marker-highlighted {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 更新地图容器样式 */
+.map-container {
+    height: calc(66.66% - 10px);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* 确保地图元素有高度 */
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        height: auto;
+    }
+
+    .map-container {
+        height: 400px;
+    }
+
+    .bottom-left-panel {
+        flex-direction: column;
+        height: 300px;
+    }
+
+    .period-filter {
+        position: static;
+        /* 在小屏幕上恢复普通文档流 */
+        margin-top: 20px;
+        width: auto;
+        /* 自动宽度以适应小屏幕 */
+        margin-left: 20px;
+        /* 添加左边距保持美观 */
+        margin-right: 20px;
+        /* 添加右边距保持美观 */
+    }
+}
