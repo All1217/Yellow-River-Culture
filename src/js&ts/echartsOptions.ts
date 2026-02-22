@@ -24,213 +24,86 @@ import SIMG6 from '@/assets/images/石洼分洪闸.png'
 import SIMG7 from '@/assets/images/泺口水文站.png'
 import SIMG8 from '@/assets/images/黄河东银铁路银山车站旧址（黄河东银铁路文化展馆）.png'
 
+import xianIMG from '@/assets/images/陕西黄河.jpg'
+import taiyuanIMG from '@/assets/images/山西黄河.jpg'
+import sichuanIMG from '@/assets/images/四川黄河.jpg'
+import ningxiaIMG from '@/assets/images/宁夏黄河.jpg'
+import gansuIMG from '@/assets/images/甘肃黄河.jpg'
+import qinghaiIMG from '@/assets/images/青海黄河.jpg'
+
 //引力气泡图
-var chartdata = [
-    {
-        "id": "0",
-        "name": "CCTV纪录",
-        "time": "2025/1/9 20:30",
-        "review": "【#专家学者力荐黄河之歌# 】探寻华夏文明之源，聆听黄河千年歌声！纪录片《黄河之歌》以一万年叙事轴线，展现了黄河与中华文明的不解之缘。获得多位业界、学界专家好评，一起来看看他们怎么说！#纪录片黄河之歌# ???",
-        "media": "CCTV纪录",
-        "pageNum": 1,
-        "sum": 60,
-        "size": 60
-    },
-    {
-        "id": "1",
-        "name": "东阿融媒",
-        "time": "2023/9/9 13:11",
-        "review": "【东阿黄河河务局牛店管理段：首创“治黄‘新’一线、铁‘军’护安澜” 】#大美山河奋进东阿# 该段打造的“治黄‘新’一线、铁‘军’护安澜”治黄漫画品牌，主要突出两个特点：一是牛店管理段治黄铁军特点。据悉，东阿黄河河务局牛店管理段是山东黄河河务局第一批“两化”建设试点单位，近年来，该段深 ???",
-        "media": "东阿融媒",
-        "pageNum": 1,
-        "sum": 17,
-        "size": 20
-    },
-    {
-        "id": "2",
-        "name": "中国之声",
-        "time": "2023/8/23 12:19",
-        "review": "【#黄河小浪底调水调沙有多壮观#】天然情况下，每年约有16亿吨泥沙进入黄河干流，其中约4亿吨泥沙淤积在黄河下游800多公里的河道，形成“地上悬河”。在小浪底水利枢纽，黄河水喷涌而出，泥沙在水面翻腾，上演现实版“黄河之水天上来”，蔚为壮观↓↓#江山壮丽# http://t.cn/A6OZqwy4 ???",
-        "media": "中国之声",
-        "pageNum": 1,
-        "sum": 1,
-        "size": 12
-    },
-    {
-        "id": "3",
-        "name": "中国国家地理",
-        "time": "2023/4/8 13:59",
-        "review": "#地理君小课堂#黄河水真的变清了！\n\n在人们的印象中，黄河一直以含沙量高著称。自高原山地飞驰而下，黄河裹挟大量泥沙，在入海口淤积造就了大片陆地。与此同时，黄河中游失去了大量的肥沃土地和水资源，下游及其相邻地区也频繁遭受洪水灾害。\n\n黄河水是“黄”还是“清”，从古至今一直备受关注。如今， ???",
-        "media": "中国国家地理",
-        "pageNum": 1,
-        "sum": 10,
-        "size": 15
-    },
-    {
-        "id": "4",
-        "name": "中国山东网",
-        "time": "2023/4/19 14:54",
-        "review": "#黄河已不是记忆中的模样#【#黄河岸边乡村美成画卷#】黄河，不一样了。黄河流域，不一样了。 记忆里的黄河，是“九曲黄河万里沙”，“一碗黄河水，半碗黄泥沙”。 黄河自古水患多，山东黄河流域也不例外。如今黄河安澜、家园秀美，黄河沿岸的乡村早已今非昔比。沿着黄河看乡村，大地如彩绘，乡村似画卷 ???",
-        "media": "中国山东网",
-        "pageNum": 1,
-        "sum": 20,
-        "size": 40
-    },
-    {
-        "id": "7",
-        "name": "人民日报",
-        "time": "2024/4/15 15:34",
-        "review": "【#黄河入海口遭外来入侵植物破坏#】互花米草是我国沿海滩涂危害最大的外来入侵植物，在我国沿海地区迅速扩张，破坏生态平衡，造成航道被淤、滩涂被占等。目前，我国互花米草治理取得阶段性成效。“绿色沙漠”消失了，如今成了生物栖息的乐园。根据监测，近几年，保护区鸟儿种类已有373种。 ???",
-        "media": "人民视频",
-        "pageNum": 1,
-        "sum": 47,
-        "size": 47
-    },
-    {
-        "id": "8",
-        "name": "人民日报",
-        "time": "2023/7/8 20:01",
-        "review": "【壮观！#黄河小浪底启动排沙模式#】7月7日，黄河小浪底水利枢纽排沙模式开启。从上游三门峡水利枢纽的来水，助力冲刷小浪底水库库尾，瞬间流量达2500立方米每秒。小浪底水坝上，4洞开闸，黄河水喷薄而出，如黄龙咆哮，气势磅礴。（小央视频） http://t.cn/A60PUVfe ???",
-        "media": "闪电新闻",
-        "pageNum": 1,
-        "sum": 12,
-        "size": 12
-    },
-    {
-        "id": "9",
-        "name": "人民视频",
-        "time": "2024/10/22 13:30",
-        "review": "【#黄河清流飞瀑映生态治理奇迹#】#从延安再出发# 今年5月，水利部发布的2023年《中国河流泥沙公报》显示，黄河干流2023年输沙量0.953亿吨，与多年平均值(1952-2020年)9.21亿吨相比，减少90%，与近10年平均值1.61亿吨相比，减少41%  #弘扬延安精神 奋进伟大时代# http://t.cn/A6nzxg1f ???",
-        "media": "观察者网",
-        "pageNum": 1,
-        "sum": 12,
-        "size": 12
-    },
-    {
-        "id": "10",
-        "name": "闪电新闻",
-        "time": "2023/11/3 11:32",
-        "review": "【#黑科技加持黄河守护人气质都变好了#】(山东) 在过去，黄河上流传着一个段子：“远看是要饭的，近看是掏炭的，一问是河务段的”[允悲]而现在可就不同了：3D建模、数字技术孪生平台，准确预判中上游来水情况；自动报警、智能识别，大大解放了黄河守护人的劳动力，他们的形象气质也好起来了~  ???",
-        "media": "新华社",
-        "pageNum": 1,
-        "sum": 12,
-        "size": 20
-    },
-    {
-        "id": "11",
-        "name": "观察者网",
-        "time": "2023/12/2 23:01",
-        "review": "#黄河要告别地上河了吗# 黄河，要告别“地上河”了？22年下切3.1米！ http://t.cn/A6lheOXm ???",
-        "media": "央视财经",
-        "pageNum": 1,
-        "sum": 12,
-        "size": 12
-    },
-    {
-        "id": "12",
-        "name": "新华社",
-        "time": "2023/4/8 7:57",
-        "review": "【#镜头记录黄河水颜色变化有多大#】 摄影师吕桂明十几年来拍摄壶口瀑布桃花汛照片，见证了黄河水颜色的变化。近年来，黄河流域实施退耕还林、经济林提质增效、湿地修复等一批重要生态保护修复工程，效果显著。（记者：原勋 赵阳 王学涛） http://t.cn/A6NL9dkz ???",
-        "media": "央视网",
-        "pageNum": 3,
-        "sum": 10,
-        "size": 10
-    },
-    {
-        "id": "13",
-        "name": "央视财经",
-        "time": "2024/11/6 15:45",
-        "review": "【#我国超六成水土流失面积得到有效控制##数读我国防沙治沙成绩单#↓】国务院关于防沙治沙工作情况的报告昨天（11月5日）提请全国人大常委会会议审议。报告显示，党的十八大以来，我国53%的可治理沙化土地得到有效治理，沙化土地面积净减少6500万亩，61%的水土流失面积得到有效控制，黄河流域植被覆盖 ???",
-        "media": "央视新闻",
-        "pageNum": 5,
-        "sum": 50,
-        "size": 50
-    },
-    {
-        "id": "14",
-        "name": "央视网",
-        "time": "2023/9/12 13:15",
-        "review": "【交出亮眼“成绩单”！#我国大江大河保护与治理成效显著#[打call]】#中国治水智慧交出耀眼绿色答卷# 在本次世界水资源大会上，以我国长江黄河为代表的重要河流，水土流失治理成效，交上一份耀眼的“绿色答卷”。今年8月，水利部发布的2022年度全国水土流失动态监测结果显示，2022年全国水土流失面积下 ???",
-        "media": "央视网",
-        "pageNum": 5,
-        "sum": 12,
-        "size": 16
-    },
-    {
-        "id": "15",
-        "name": "央视网",
-        "time": "2023/4/22 10:00",
-        "review": "【高燃！#百名大学生壶口献歌呼吁守护黄河#】正值第54个世界地球日之际，为唤起更多人对黄河塑料治理问题的关注，近日，来自延安大学鲁艺合唱团的学生们，在壶口瀑布旁唱响了一版特殊的《黄河大合唱》：他们不但将环保号召写进了歌词中，还通过实地参与清塑、设计大地艺术等方式，用新时代新青年的方式 ???",
-        "media": "央视网",
-        "pageNum": 5,
-        "sum": 12,
-        "size": 12
-    },
-    {
-        "id": "21",
-        "name": "央视新闻",
-        "time": "2023/1/16 18:20",
-        "review": "【#水文人手中的测深杆也是救命工具#[泪]】阿坝州唐克镇边，坐落着四川省内黄河流域唯一的水文站。流经的白河，对黄河水资源变化有重要影响。这里的#水文站长接棒父亲守护黄河30年#，用一组组数字记录黄河的点滴变化。由于白河河底都是细沙，工作时人很容易陷入，手中的测深杆，就成了他们保护自己的武 ???",
-        "media": "央视新闻",
-        "pageNum": 1,
-        "sum": 6,
-        "size": 46
-    }
+const chartData = [
+    { "id": "0", "name": "正向情绪", "color": "#91cc75", "size": 60, "des": "情绪取向", "category": 0 },
+    { "id": "1", "name": "负向情绪", "color": "#91cc75", "size": 60, "des": "情绪取向", "category": 0 },
+
+    { "id": "2", "name": "积极的", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "3", "name": "惊讶", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "4", "name": "称赞", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "5", "name": "愉悦", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "6", "name": "消极的", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "7", "name": "气恼", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "8", "name": "厌恶", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "9", "name": "惧怕", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+    { "id": "10", "name": "悲伤", "color": "#fac858", "size": 40, "des": "情绪类型", "category": 1 },
+
+    { "id": "11", "name": "践行治水思想", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "12", "name": "震撼", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "13", "name": "魅力", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "14", "name": "幸福河", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "15", "name": "工作条件艰苦", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "16", "name": "资源过度开发", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "17", "name": "黄沙漫天", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "18", "name": "警惕外来物种入侵", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "19", "name": "古人乡关愁绪", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "20", "name": "守护黄河安澜", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "21", "name": "黄河咆哮", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "22", "name": "大好河山", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "23", "name": "治河成效", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "24", "name": "环境污染", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "25", "name": "破坏生态平衡", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "26", "name": "河道淤积", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "27", "name": "水土流失", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "28", "name": "财产损失", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "29", "name": "环保意识", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "30", "name": "神奇翠绿", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "31", "name": "智慧结晶", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "32", "name": "改善环境", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "33", "name": "绿色沙漠", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "34", "name": "影响经济发展", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "35", "name": "污水横流", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "36", "name": "旱灾", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "37", "name": "人员伤亡", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "38", "name": "继承发扬中国文化", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "39", "name": "母亲河", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "40", "name": "保障平安", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "41", "name": "精神传承危机", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "42", "name": "河口决堤", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
+    { "id": "43", "name": "洪灾", "color": "#5470c6", "size": 15, "des": "关键词", "category": 2 },
 ]
-var color = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'];
-var data = []
-chartdata.map((item, index) => {
-    if (item.size >= 10) {
-        data.push(
-            {
-                id: item.id,
-                name: item.name + '\n' + item.sum,
-                value: item.sum,
-                symbolSize: item.size * 2,
-                draggable: true,
-                label: {
-                    show: item.size >= 20,
-                    textStyle: {
-                        fontSize: 12,
-                        color: '#fff',
-                    },
-                },
-                itemStyle: {
-                    color: color[index]
-                },
-                emphasis: {
-                    label: {
-                        show: true
-                    }
-                }
-            },
-        )
-    }
-})
 
 //带经纬度数据
-const mbData = [
-    { xLabel: '清雍正元年（1723年）', },
-    { xLabel: '明永乐九年（1411年）', },
-    { xLabel: '秦始皇赢政二十六年（公元前221年）', },
-    { xLabel: '1950-1952年', },
-    { xLabel: '明宣德五年（1430年）', },
-    { xLabel: '清道光二十一年（1841年）', },
-    { xLabel: '1957-1961年', },
-    { xLabel: '明弘治七年（1494年）', },
-    { xLabel: '1949-1957年', },
-    { xLabel: '1881年', },
-    { xLabel: '1989年', },
-    { xLabel: '清光绪十六年（1890年）', },
-    { xLabel: '清光绪十一年（1885年）', },
-    { xLabel: '1956年', },
-    { xLabel: '1967年', },
-    { xLabel: '1974年', },
-    { xLabel: '1938年', },
-    { xLabel: '1919年', },
-    { xLabel: '明弘治三年（1490年）', },
-    { xLabel: '1972年', },
-]
+// const mbData = [
+//     { xLabel: '清雍正元年（1723年）', },
+//     { xLabel: '明永乐九年（1411年）', },
+//     { xLabel: '秦始皇赢政二十六年（公元前221年）', },
+//     { xLabel: '1950-1952年', },
+//     { xLabel: '明宣德五年（1430年）', },
+//     { xLabel: '清道光二十一年（1841年）', },
+//     { xLabel: '1957-1961年', },
+//     { xLabel: '明弘治七年（1494年）', },
+//     { xLabel: '1949-1957年', },
+//     { xLabel: '1881年', },
+//     { xLabel: '1989年', },
+//     { xLabel: '清光绪十六年（1890年）', },
+//     { xLabel: '清光绪十一年（1885年）', },
+//     { xLabel: '1956年', },
+//     { xLabel: '1967年', },
+//     { xLabel: '1974年', },
+//     { xLabel: '1938年', },
+//     { xLabel: '1919年', },
+//     { xLabel: '明弘治三年（1490年）', },
+//     { xLabel: '1972年', },
+// ]
 
 //改道
 export const lbData = [
@@ -282,6 +155,12 @@ export const geoCoordMap = {
     "huanghe": [
         { name: '河南', value: [113.665412, 34.757975, 100, 'image://' + HIMG1] },
         { name: '山东', value: [117.000923, 36.675807, 100, 'image://' + SIMG1] },
+        { name: '陕西省', value: [109.0861893, 34.53727, 100, 'image://' + xianIMG] },
+        { name: '山西省', value: [112.549248, 37.857014, 100, 'image://' + taiyuanIMG] },
+        { name: '四川省', value: [104.065735, 30.659462, 100, 'image://' + sichuanIMG] },
+        { name: '宁夏回族自治区', value: [106.278179, 38.46637, 100, 'image://' + ningxiaIMG] },
+        { name: '青海省', value: [101.778916, 36.623178, 100, 'image://' + qinghaiIMG] },
+        { name: '甘肃省', value: [103.823557, 36.058039, 100, 'image://' + gansuIMG] },
     ],
     "河南省": [
         {
@@ -535,7 +414,6 @@ export const nameAndJson = {
 export type EO = echarts.EChartsOption;
 interface EOS {
     "lb": EO
-    "rt": EO
     "mbt": EO
     "huanghe": EO
     "河南省": EO
@@ -597,82 +475,6 @@ export const options: EOS = {
             },
         ]
     },
-    "rt": {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'shadow'
-            },
-            formatter: function (params: any) {
-                let tar;
-                if (params[1] && params[1].value !== '-') {
-                    tar = params[1];
-                } else {
-                    tar = params[2];
-                }
-                return tar && tar.name + '<br/>' + tar.value;
-            }
-        },
-        grid: {
-            top: '2%',
-            left: '3%',
-            right: '2%',
-            bottom: 0,
-            containLabel: true
-        },
-        xAxis: {
-            type: 'category',
-            data: (function () {
-                let list = [];
-                mbData.forEach((e) => {
-                    list.push(e.xLabel)
-                })
-                return list;
-            })()
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [
-            {
-                name: 'Placeholder',
-                type: 'bar',
-                stack: 'Total',
-                silent: true,
-                itemStyle: {
-                    borderColor: 'transparent',
-                    color: 'transparent'
-                },
-                emphasis: {
-                    itemStyle: {
-                        borderColor: 'transparent',
-                        color: 'transparent'
-                    }
-                },
-                data: [0, 200, 545, 938, 830, 676, 811, 989, 1275, 1156, 795, 592, 733, 833, 912, 1112, 1276, 1135, 1035, 956, 756, 592]
-            },
-            {
-                name: 'Income',
-                type: 'bar',
-                stack: 'Total',
-                label: {
-                    show: true,
-                    position: 'top'
-                },
-                data: [200, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-', 141, 100, 79, 200, 164, '-', '-', '-', '-']
-            },
-            {
-                name: 'Expenses',
-                type: 'bar',
-                stack: 'Total',
-                label: {
-                    show: true,
-                    position: 'bottom'
-                },
-                data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203, '-', '-', '-', '-', '-', 141, 100, 79, 200, 164]
-            }
-        ]
-    },
     "huanghe": {
         tooltip: {//鼠标悬停时的信息提示
             trigger: "item",
@@ -685,8 +487,10 @@ export const options: EOS = {
             }
         },
         geo: {
+            top: '8%',
             map: 'huanghe',
             zoom: 1.2,
+            roam: true,
             itemStyle: {
                 areaColor: "#588EA2",
                 borderColor: "rgba(218, 224, 255,1)",
@@ -721,7 +525,7 @@ export const options: EOS = {
                 name: 'hightLightDot',
                 type: 'effectScatter',
                 coordinateSystem: 'geo',
-                zlevel: 2,
+                zlevel: 1,
                 rippleEffect: {
                     brushType: 'stroke'
                 },
@@ -741,7 +545,7 @@ export const options: EOS = {
                 type: 'scatter',
                 coordinateSystem: 'geo',
                 symbol: 'pin',
-                symbolSize: [50, 50],
+                symbolSize: [46, 46],
                 label: {
                     show: true,
                     color: '#fff',
@@ -765,9 +569,9 @@ export const options: EOS = {
                 symbol: (value): string => {
                     return value[3]
                 },
-                symbolSize: [85, 60],
-                symbolOffset: [0, -80],
-                z: 10,
+                symbolSize: [72, 48],
+                symbolOffset: [0, -75],
+                zlevel: 3,
                 data: (function () {
                     let list = [];
                     geoCoordMap['huanghe'].forEach((e) => { list.push({ value: e.value, name: e.name }) })
@@ -1058,31 +862,103 @@ export const options: EOS = {
         ]
     },
     "TRT": {
-        animationDurationUpdate: function (idx) {
-            return idx * 100;
-        },
         tooltip: {
             trigger: 'item',
-            formatter: function (params): string {
-                return params.name + '<br/>' + '发文总数：' + params.value;
-            },
+            formatter: (params): string => {
+                return params.value[1] + ': ' + params.name
+            }
         },
-        animationEasingUpdate: 'bounceIn',
         cursor: 'pointer',
+        legend: [{ data: ['情绪取向', '情绪类型', '关键词'], bottom: '10' }],
         series: [
             {
                 type: 'graph',
                 layout: 'force',
                 cursor: 'pointer',
                 force: {
-                    repulsion: 100,
-                    edgeLength: 150,
+                    repulsion: 150,
                 },
                 label: {
+                    color: '#000',
                     show: true
                 },
                 roam: true,
-                data,
+                categories: [{ name: '情绪取向' }, { name: '情绪类型' }, { name: '关键词' },],
+                data: (function () {
+                    var graphData = []
+                    chartData.forEach((item, index) => {
+                        graphData.push(
+                            {
+                                //如果id也写上的话连线会失败，卡了一节课
+                                name: item.name,
+                                value: [0, item.des],
+                                symbolSize: item.size,
+                                draggable: true,
+                                category: item.des,
+                                label: {
+                                    show: item.size > 30,
+                                    textStyle: {
+                                        fontSize: 12,
+                                        color: '#fff',
+                                    }
+                                },
+                                emphasis: {
+                                    label: {
+                                        color: '#000',
+                                        show: true
+                                    }
+                                }
+                            },
+                        )
+                    })
+                    return graphData;
+                })(),
+                links: [
+                    { source: '正向情绪', target: '负向情绪' },
+                    { source: '正向情绪', target: '积极的' },
+                    { source: '正向情绪', target: '惊讶' },
+                    { source: '正向情绪', target: '称赞' },
+                    { source: '正向情绪', target: '愉悦' },
+                    { source: '负向情绪', target: '消极的' },
+                    { source: '负向情绪', target: '气恼' },
+                    { source: '负向情绪', target: '厌恶' },
+                    { source: '负向情绪', target: '惧怕' },
+                    { source: '负向情绪', target: '悲伤' },
+
+                    { source: '积极的', target: '践行治水思想' },
+                    { source: '积极的', target: '守护黄河安澜' },
+                    { source: '积极的', target: '环保意识' },
+                    { source: '积极的', target: '继承发扬中国文化' },
+                    { source: '惊讶', target: '震撼' },
+                    { source: '惊讶', target: '黄河咆哮' },
+                    { source: '惊讶', target: '神奇翠绿' },
+                    { source: '称赞', target: '魅力' },
+                    { source: '称赞', target: '大好河山' },
+                    { source: '称赞', target: '智慧结晶' },
+                    { source: '称赞', target: '母亲河' },
+                    { source: '愉悦', target: '幸福河' },
+                    { source: '愉悦', target: '治河成效' },
+                    { source: '愉悦', target: '改善环境' },
+                    { source: '愉悦', target: '保障平安' },
+                    { source: '消极的', target: '工作条件艰苦' },
+                    { source: '消极的', target: '环境污染' },
+                    { source: '消极的', target: '绿色沙漠' },
+                    { source: '气恼', target: '资源过度开发' },
+                    { source: '气恼', target: '破坏生态平衡' },
+                    { source: '气恼', target: '影响经济发展' },
+                    { source: '气恼', target: '精神传承危机' },
+                    { source: '厌恶', target: '黄沙漫天' },
+                    { source: '厌恶', target: '河道淤积' },
+                    { source: '厌恶', target: '污水横流' },
+                    { source: '厌恶', target: '河口决堤' },
+                    { source: '惧怕', target: '警惕外来物种入侵' },
+                    { source: '惧怕', target: '水土流失' },
+                    { source: '惧怕', target: '旱灾' },
+                    { source: '惧怕', target: '洪灾' },
+                    { source: '悲伤', target: '古人乡关愁绪' },
+                    { source: '悲伤', target: '财产损失' },
+                    { source: '悲伤', target: '人员伤亡' },
+                ],
             },
         ],
     },
@@ -1125,15 +1001,15 @@ export const options: EOS = {
                     show: false
                 },
                 data: [
-                    { value: 390, name: 'positive' },
-                    { value: 110, name: 'negative' },
-                    { value: 80, name: 'happy' },
-                    { value: 10, name: 'anger' },
-                    { value: 60, name: 'disgust' },
-                    { value: 1, name: 'fear' },
-                    { value: 40, name: 'sadness' },
-                    { value: 10, name: 'surprise' },
-                    { value: 300, name: 'good' },
+                    { value: 390, name: '积极的' },
+                    { value: 110, name: '消极的' },
+                    { value: 80, name: '愉悦' },
+                    { value: 10, name: '气恼' },
+                    { value: 60, name: '厌恶' },
+                    { value: 1, name: '惧怕' },
+                    { value: 40, name: '悲伤' },
+                    { value: 10, name: '惊讶' },
+                    { value: 300, name: '称赞' },
                 ]
             }
         ]
@@ -1174,15 +1050,15 @@ export const options: EOS = {
                     show: false
                 },
                 data: [
-                    { value: 410, name: 'positive' },
-                    { value: 90, name: 'negative' },
-                    { value: 30, name: 'happy' },
-                    { value: 1, name: 'anger' },
-                    { value: 40, name: 'disgust' },
-                    { value: 40, name: 'fear' },
-                    { value: 10, name: 'sadness' },
-                    { value: 10, name: 'surprise' },
-                    { value: 370, name: 'good' },
+                    { value: 410, name: '积极的' },
+                    { value: 90, name: '消极的' },
+                    { value: 30, name: '愉悦' },
+                    { value: 1, name: '气恼' },
+                    { value: 40, name: '厌恶' },
+                    { value: 40, name: '惧怕' },
+                    { value: 10, name: '悲伤' },
+                    { value: 10, name: '惊讶' },
+                    { value: 370, name: '称赞' },
                 ]
             }
         ]

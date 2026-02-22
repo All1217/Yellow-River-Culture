@@ -1,31 +1,37 @@
 <template>
   <div class="third-page-container">
-    <div class="gap"></div>
+    <div class="gap flex-row-ac jcc">
+      <div class="big-title flex-row-ac" style="margin: auto;">
+        <DataLine style="width: 25px;height: 25px;margin-right: 15px;color: #18191c;" />
+        现代之涌
+      </div>
+    </div>
     <div class="main-box flex-row">
       <div class="left flex-col">
-        <div class="lt danmu-box">
+        <div class="lt">
           <h1 ref="danmuBoxTitle">评论弹幕图</h1>
+          <div class="lt-background"></div>
           <div class="danmu-canvas" ref="danmuBox"></div>
         </div>
         <div class="lb flex-row">
           <div class="lbl chart-box">
             <h2>用户IP属地TOP10</h2>
-            <div ref="lblChart" class="chart"></div>
+            <div ref="lblChart" class="chart cc"></div>
           </div>
           <div class="lbr chart-box">
             <h2>评论情绪分布圆环图</h2>
-            <div ref="lbrChart" class="chart"></div>
+            <div ref="lbrChart" class="chart cc"></div>
           </div>
         </div>
       </div>
       <div class="right flex-col">
         <div class="rt chart-box">
-          <h2>发布媒体气泡图</h2>
-          <div ref="rbtChart" class="chart"></div>
+          <h2>情绪关键词——关系图</h2>
+          <div ref="rbtChart" class="chart cc"></div>
         </div>
         <div class="rb chart-box">
           <h2>正文情绪分布圆环图</h2>
-          <div ref="rbbChart" class="chart"></div>
+          <div ref="rbbChart" class="chart cc"></div>
         </div>
       </div>
     </div>
@@ -126,7 +132,7 @@ const clearDanmu = () => {
 }
 onMounted(() => {
   pStore.setNavOption('thirdPage')
-  pStore.title = '第三页面'
+  pStore.title = '现代之涌'
   pStore.curRouteName = 'thirdPage'
   clearInter = setInterval(() => {
     clearDanmu();
@@ -152,6 +158,14 @@ onUnmounted(() => {
   }
 }
 
+.cc {
+  background: rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
 .danmu {
   position: absolute;
   display: inline-block;
@@ -168,7 +182,7 @@ onUnmounted(() => {
   h2 {
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 20px;
     width: 100%;
     height: 24px;
     font-size: 20px;
@@ -188,11 +202,24 @@ onUnmounted(() => {
 .third-page-container {
   width: 100%;
   height: 100vh;
-  padding: 30px 0 30px 0;
+  padding: 0 0 30px 0;
   background: url(../assets/images/背景/浅色背景4.png) no-repeat;
   background-size: 100% 100%;
   overflow-x: hidden;
   overflow-y: auto;
+
+  .gap {
+    width: 100%;
+    height: 64px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    .big-title {
+      color: #18191c;
+      font-weight: bold;
+      font-size: 25px;
+    }
+  }
 
   .main-box {
     margin: 0 auto;
@@ -200,26 +227,26 @@ onUnmounted(() => {
     height: 800px;
     min-width: 1024px;
     max-width: 1920px;
-    // background-color: #fff;
-    // box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.5);
 
     .left {
       flex: 2;
 
       .lt {
         flex: 2;
+        padding: 10px 10px 0 10px;
         position: relative;
-        overflow: hidden;
-      }
 
-      .danmu-box {
-        position: relative;
-        padding-top: 35px;
-        overflow: hidden;
+        .lt-background {
+          width: 100%;
+          height: 100%;
+          background: url(../assets/images/背景/弹幕背景.png) no-repeat;
+          background-size: 100% 100%;
+          border-radius: 8px;
+        }
 
         h1 {
           position: absolute;
-          top: 0;
+          top: 15px;
           left: 0;
           width: 100%;
           color: #D1872A;
@@ -228,9 +255,14 @@ onUnmounted(() => {
         }
 
         .danmu-canvas {
-          width: 100%;
-          height: 500px;
+          position: absolute;
+          left: 10px;
+          top: 35px;
+          width: 833px;
+          height: 498px;
+          overflow: hidden;
         }
+
       }
 
       .lb {

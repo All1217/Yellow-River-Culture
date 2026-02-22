@@ -3,7 +3,7 @@
     <div class="data-center">
       <div class="data-center-content">
         <header class="header">
-          <h1>数据可视化</h1>
+          <h1 @click="openOther">文化遗产</h1>
           <div class="show-time">{{
             `当前时间：${curDate.y}年${curDate.mon}月${curDate.day}日-${curDate.h}时${curDate.m}分${curDate.s}秒` }}</div>
         </header>
@@ -12,7 +12,7 @@
             <div class="backBtn flex-row-ac jcc" v-show="deep" @click="back">
               <i class="iconfont icon-fanhui"></i>
             </div>
-            <div id="news" :class="deep ? 'panel deep-left' : 'panel'">
+            <div id="bigger-panel" :class="deep ? 'panel deep-left' : 'panel'">
               <h2>实时新闻政策</h2>
               <div class="chart news">
                 <ul>
@@ -36,7 +36,19 @@
             <div :class="deep ? 'deep-box deep-zero' : 'deep-box deep-left'">
               <div class="deep-box-out">
                 <div class="deep-box-content">
-
+                  <h1 class="db-title" style="text-align: left;line-height: 25px;font-size: 18px;">
+                    {{ curKeyName + '水利文化遗产' }}
+                  </h1>
+                  <h1 class="db-title" style="text-align: left;line-height: 40px;font-size: 32px;">
+                    {{ '共计' + curCount + '项' }}
+                  </h1>
+                  <el-table :data="curData" style="width: 100%;" border size="small" :cell-style="cellStyle"
+                    :header-cell-style="headerStyle">
+                    <el-table-column prop="遗产项目名称" label="遗产项目名称" />
+                    <el-table-column prop="所属类别" label="所属类别" />
+                    <el-table-column prop="所属区域" label="所属区域" />
+                    <el-table-column prop="建设时间/建成时间" label="建设/建成时间" />
+                  </el-table>
                 </div>
               </div>
               <div class="panel-footer"></div>
@@ -52,7 +64,7 @@
             <transition name="inout">
               <div class="mid-box" v-show="!deep">
                 <div id="mid-panel" class="panel">
-                  <h2>水文化遗产的年代分布</h2>
+                  <h2>不同遗产类型在黄河历史中的变迁</h2>
                   <div id="mid-bt-chart" ref="mbChart" class="chart"></div>
                   <div class="panel-footer"></div>
                 </div>
@@ -60,13 +72,8 @@
             </transition>
           </div>
           <div class="column right-col">
-            <div id="structure" :class="deep ? 'panel deep-right' : 'panel'">
-              <h2>不同遗产类型在黄河历史中的变迁</h2>
-              <div id="structureChart" ref="rtChart" class="chart"></div>
-              <div class="panel-footer"></div>
-            </div>
-            <div :class="deep ? 'panel deep-right' : 'panel'">
-              <h2>黄河文化</h2>
+            <div id="bigger-panel" :class="deep ? 'panel deep-right' : 'panel'">
+              <h2>黄河早期文化</h2>
               <div class="chart culture">
                 <ul>
                   <li v-for="e in cultureList" class="flex-row-ac">
@@ -79,6 +86,10 @@
                   </li>
                 </ul>
               </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div :class="deep ? 'panel deep-right' : 'panel'">
+              <div id="TLSChart" class="chart" ref="TLSContainer"></div>
               <div class="panel-footer"></div>
             </div>
             <div :class="deep ? 'deep-box deep-zero' : 'deep-box deep-right'">
@@ -120,7 +131,8 @@ import { onMounted, onBeforeUnmount, reactive, ref } from 'vue';
 import { useStore } from '@/stores/useStore';
 import * as echarts from 'echarts';
 import { options, nameAndJson, lbData, geoCoordMap } from '@/js&ts/echartsOptions'
-import { newsList, cultureList } from '@/js&ts/staticText'
+import { newsList, cultureList, mapLeft } from '@/js&ts/staticText'
+import { TLSOptions } from '@/js&ts/multioptions';
 const pStore = useStore()
 const curDate = reactive({
   y: 0,
@@ -137,6 +149,8 @@ const showMap = ref<boolean>(true)
 const lbIndex = ref<number>(1)
 const lbNameIndex = ref<number>(0)
 const curKeyName = ref<string>('')
+const curData = ref([])
+const curCount = ref<number>(0)
 const text = reactive({
   name: '',
   location: '',
@@ -147,17 +161,22 @@ const text = reactive({
 })
 
 const lbChart = ref<HTMLDivElement | null>(null);
-const rtChart = ref<HTMLDivElement | null>(null);
 const mChart = ref<HTMLDivElement | null>(null);
 const mbChart = ref<HTMLDivElement | null>(null);
+const TLSContainer = ref<HTMLDivElement | null>(null);
 var lbChartIns: echarts.ECharts | null = null;
-var rtChartIns: echarts.ECharts | null = null;
 var mChartIns: echarts.ECharts | null = null;
 var mbChartIns: echarts.ECharts | null = null;
+var TLSIns: echarts.ECharts | null = null;
 
-function onProvinceClick(e: echarts.ECElementEvent) {
+function openOther(){
+  window.open('http://localhost:8000', '_blank')
+}
+function onProvinceClick(e) {
   if (!deep.value && e.componentType == 'geo') {
     curKeyName.value = e.name
+    curData.value = mapLeft[curKeyName.value].tableData
+    curCount.value = mapLeft[curKeyName.value].count
     try {
       resetText(geoCoordMap[curKeyName.value][0]['name'])
     } catch (error) {
@@ -286,22 +305,32 @@ function initChart() {
       }
     });
   }
-  if (rtChart.value) {
-    rtChartIns = echarts.init(rtChart.value);
-    rtChartIns.setOption(options.rt);
+  if (TLSContainer.value) {
+    TLSIns = echarts.init(TLSContainer.value);
+    TLSIns.setOption(TLSOptions);
     window.addEventListener('resize', () => {
-      if (rtChartIns) {
-        rtChartIns.resize();
+      if (TLSIns) {
+        TLSIns.resize();
       }
     });
   }
   initMbChart()
   initMapChart('huanghe', nameAndJson['huanghe'])
 }
+const cellStyle = ({ row, index }) => {
+  return {
+    fontSize: '10px', color: '#5B8790'
+  }
+}
+const headerStyle = ({ row, index }) => {
+  return {
+    color: '#D1872A', backgroundColor: '#f5f7fa'
+  }
+}
 
 onMounted(() => {
   pStore.setNavOption('secondPage')
-  pStore.title = '第二页面'
+  pStore.title = '文化遗产'
   pStore.curRouteName = 'secondPage'
   st = setInterval(() => {
     let dt = new Date();

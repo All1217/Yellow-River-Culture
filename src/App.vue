@@ -5,25 +5,30 @@
         <span class="title">{{ pStore.title }}</span>
       </div>
       <div class="nav-bar">
-        <a @click="jumpTo({name: 'home'})" class="nav-item"
+        <a @click="jumpTo({ name: 'home' })" class="nav-item"
           :style="`background-color: ${curRoute == 'home' ? 'var(--itemBgcHight)' : ''};`">
           导览
           <div class="bottom-bar" v-show="curRoute == 'home'"></div>
         </a>
-        <a @click="jumpTo({name: 'secondPage'})" class="nav-item"
+        <a @click="jumpTo({ name: 'secondPage' })" class="nav-item"
           :style="`background-color: ${curRoute == 'secondPage' ? 'var(--itemBgcHight)' : ''};`">
-          第二页面
+          文化遗产
           <div class="bottom-bar" v-show="curRoute == 'secondPage'"></div>
         </a>
-        <a @click="jumpTo({name: 'thirdPage'})" class="nav-item"
-          :style="`background-color: ${curRoute == 'thirdPage' ? 'var(--itemBgcHight)' : ''};`">
-          第三页面
-          <div class="bottom-bar" v-show="curRoute == 'thirdPage'"></div>
-        </a>
-        <a @click="jumpTo({name: 'sunView'})" class="nav-item"
+        <a @click="jumpTo({ name: 'sunView' })" class="nav-item"
           :style="`background-color: ${curRoute == 'sunView' ? 'var(--itemBgcHight)' : ''};`">
-          历史大事与治水之智
+          治水之智
           <div class="bottom-bar" v-show="curRoute == 'sunView'"></div>
+        </a>
+        <a @click="jumpTo({ name: 'GovView' })" class="nav-item"
+          :style="`background-color: ${curRoute == 'GovView' ? 'var(--itemBgcHight)' : ''};`">
+          河吏之鉴
+          <div class="bottom-bar" v-show="curRoute == 'GovView'"></div>
+        </a>
+        <a @click="jumpTo({ name: 'thirdPage' })" class="nav-item"
+          :style="`background-color: ${curRoute == 'thirdPage' ? 'var(--itemBgcHight)' : ''};`">
+          现代之涌
+          <div class="bottom-bar" v-show="curRoute == 'thirdPage'"></div>
         </a>
       </div>
     </div>
@@ -38,6 +43,7 @@
 import { ref, watch } from 'vue'
 import { useStore } from '@/stores/useStore';
 import { useRouter, RouteLocationRaw } from 'vue-router';
+
 const showNav = ref<boolean>(false)
 const showBtn = ref<boolean>(false)
 const router = useRouter()

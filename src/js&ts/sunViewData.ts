@@ -546,3 +546,44 @@ export const events = [
         description: "提出黄河流域生态保护和高质量发展重大国家战略"
     }
 ];
+export const pieData = [
+    {
+        name: '黄河上中游',
+        value: 3,
+        children: [
+            { name: '疏浚分洪', value: 1, event: '修复光禄渠（汉）、李铣决河（唐）', desc: '疏浚旧渠、开分洪道，减轻主河道压力。', url: 'https://baike.baidu.com/item/%E5%88%86%E6%B4%AA/5194120' },
+            { name: '引水灌溉', value: 1, event: '利用多沙河道大放淤（宋）、汉唐渠以石建闸（明）', desc: '利用黄河泥沙淤灌农田，改良土壤。', url: 'https://baike.baidu.com/item/%E6%B7%A4%E7%81%8C/6071872' },
+            { name: '防洪工程', value: 1, event: '兰州修建河防工程（清）、甘肃靖远修筑河堤（清）', desc: '修筑堤防，保护沿岸城镇。', url: 'https://baike.baidu.com/item/%E9%98%B2%E6%B4%AA%E5%B7%A5%E7%A8%8B/6714543' }
+        ]
+    },
+    {
+        name: '黄河下游',
+        value: 5,
+        children: [
+            { name: '堤防体系构建', value: 1, event: '贾让治河三策（西汉）、宽立堤防（宋）、修筑河南各地堤防（明）', desc: '主张"宽河固堤"或系统性筑堤（如潘季驯"束水攻沙"）。', url: 'https://baijiahao.baidu.com/s?id=1810140296377421234&wfr=spider&for=pc' },
+            { name: '堵口抢险', value: 1, event: '河决酸枣（战国）、贾鲁堵口（元）、刘大夏治张秋决河（明）', desc: '集中人力堵决口（如贾鲁"石船堤法"）或人工改道（如王景治河）。', url: 'https://baike.baidu.com/item/%E5%A0%B5%E5%8F%A3/5895248' },
+            { name: '调水调沙', value: 1, event: '遏淇水入白沟（东汉）、导洛通汴（宋）', desc: '引入清水河流（如洛水）稀释黄河泥沙，改善漕运。', url: 'https://baike.baidu.com/item/%E8%B0%83%E6%B0%B4%E8%B0%83%E6%B2%99/6906532' },
+            { name: '以水代兵', value: 1, event: '朱全忠决河（唐末）、梁决河拒晋（五代）', desc: '人为决河，导致灾害。', url: 'https://www.gzszx.gov.cn/wstd/wsmb/38399.shtml' }
+        ]
+    },
+    {
+        name: '运河及关联水系',
+        value: 2,
+        children: [
+            { name: '漕运', value: 1, event: '修白起渠（战国）、导洛通汴（宋）、朱衡开新河（明）', desc: '开凿或整治运河（如汴渠）保障漕运，结合清水济运。', url: 'https://baike.baidu.com/item/%E6%BC%95%E8%BF%90/1058503' },
+            { name: '闸坝工程', value: 1, event: '宋代卷埽、蒲津河堤创建埽坝工程（唐）', desc: '采用埽工、木石闸坝调控水位，如卷埽技术加固堤岸。', url: 'https://baike.baidu.com/item/%E9%97%B8%E5%9D%9D%E5%B7%A5%E7%A8%8B/10262118' }
+        ]
+    },
+    {
+        name: '全流域治理',
+        value: 6,
+        children: [
+            { name: '统一管理机构', value: 1, event: '成立治河委员会（1946年）', desc: '设立专门机构统筹黄河治理。', url: 'http://www.yrcc.gov.cn' },
+            { name: '水库拦沙', value: 1, event: '"蓄水拦沙"治河方略确立（1954年）', desc: '通过水库（如三门峡）拦截泥沙，减少下游淤积。', url: 'http://www.yrcc.gov.cn/xwdt/hhyw/202312/t20231228_406350.html' },
+            { name: '综合治理', value: 1, event: '"上拦下排、两岸分滞"新方略确立（1965年）', desc: '上游拦沙、中游调水调沙、下游分洪，形成系统治理体系。', url: 'http://www.yrcc.gov.cn/zwzc/zcjd/202403/t20240312_426782.html' },
+            { name: '水量分配', value: 1, event: '"八七"分水方案（1987年）', desc: '确定黄河流域各省区用水配额，缓解水资源矛盾。', url: 'https://baike.baidu.com/item/%E2%80%9C%E5%85%AB%E4%B8%83%E5%88%86%E6%B0%B4%E2%80%9D%E6%96%B9%E6%A1%88/15538461' },
+            { name: '综合规划', value: 1, event: '黄河流域综合规划（2013年）', desc: '统筹防洪、供水、生态保护等目标。', url: 'https://baike.baidu.com/item/%E9%BB%84%E6%B2%B3%E6%B5%81%E5%9F%9F%E7%BB%BC%E5%90%88%E8%A7%84%E5%88%92/141194' },
+            { name: '国家战略', value: 1, event: '黄河重大国家战略提出（2019年）', desc: '将黄河流域生态保护和高质量发展上升为国家战略。', url: 'https://baike.baidu.com/item/%E9%BB%84%E6%B2%B3%E6%B5%81%E5%9F%9F%E7%94%9F%E6%80%81%E4%BF%9D%E6%8A%A4%E5%92%8C%E9%AB%98%E8%B4%A8%E9%87%8F%E5%8F%91%E5%B1%95/23764172' }
+        ]
+    }
+];

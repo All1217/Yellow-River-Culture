@@ -26,6 +26,16 @@ const routes: Array<RouteRecordRaw> = [
     name: 'sunView',
     component: () => import('@/views/SunView.vue'),
   },
+  {
+    path: '/govView',
+    name: 'GovView',
+    component: () => import('@/views/Gov.vue'),
+  },
+  {
+    path: '/businessIntelligence',
+    name: 'BI',
+    component: () => import('@/views/BI.vue')
+  }
 ]
 
 const router = createRouter({

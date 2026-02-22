@@ -13,6 +13,7 @@ interface Index {
     'thirdPage': NavOption
     'secondPage': NavOption
     'sunView': NavOption
+    'GovView': NavOption
 }
 export const navOptions: Index = {
     'home': {
@@ -54,5 +55,15 @@ export const navOptions: Index = {
         barBgc: '#fff',
         btnColor: '#fff',
         btnColorHight: '#fff'
+    },
+    'GovView': {
+        textColor: '#371642',
+        textColorHight: '#371642',
+        bgc: '#fff',
+        itemBgc: '#f5f5f5',
+        itemBgcHight: '#f9f9f9',
+        barBgc: '#f72c5b',
+        btnColor: '#371642',
+        btnColorHight: '#371642'
     },
 }

@@ -16,7 +16,7 @@
                 后期财政困窘致河患失控，白茅口决河引发百万饥民，贾鲁堵口工程直接触发红巾军起义。治河不力成为王朝衰亡重要推手，折射出人河关系的政治化特征，该时期黄河治理在工程技术上有进步，但军事化操作和王朝治理能力缺陷导致生态灾难与社会动荡恶性循环。
             </p>
         </div>
-        <div class="cover-img" style="top: 100px;right: 360px;" @click="showMask = true">
+        <div class="cover-img" style="top: 100px;right: 300px;" @click="showMask = true">
             <img src="../assets/images/views/view6_main.png" alt="">
         </div>
     </div>
@@ -30,7 +30,7 @@ const showMask = ref<boolean>(false)
 
 <style scoped lang="less">
 .text-box-view {
-    width: 320px;
+    width: 420px;
     height: 100vh;
     padding-top: 60px;
     bottom: 0;

@@ -1,9 +1,9 @@
 <template>
   <div class="main-view flex-col-ac">
-    <div class="cover-img" style="top: 100px;left: 300px;" @click="showMask = true">
+    <div class="cover-img" style="top: 120px;left: 150px;" @click="showMask = true">
       <img src="../assets/images/views/夏商周2.png" alt="" style="height: 400px;">
     </div>
-    <div class="cover-img" style="top: 20px;left: 450px;" @click="showMask = true">
+    <div class="cover-img" style="top: 40px;left: 300px;" @click="showMask = true">
       <img src="../assets/images/views/夏商周1.png" alt="" style="width: 850px;">
     </div>
     <div class="text-box text-box-view1">
@@ -25,9 +25,9 @@
         公元前225年（秦王政22年）：秦灌大梁<br>
       </p>
     </div>
-    <CardBox :pos="'top: 520px;left:360px'" :avatar="cardImg1" :title="'大禹治水'" :des="'大禹疏导黄河，划分九州，奠定早期黄河河道（史称“禹河故道”）'">
+    <CardBox :pos="'top: 540px;left:200px'" :avatar="cardImg1" :title="'大禹治水'" :des="'大禹疏导黄河，划分九州，奠定早期黄河河道（史称“禹河故道”）'">
     </CardBox>
-    <CardBox :pos="'top: 520px;left:720px'" :avatar="cardImg2" :title="'商都数迁'"
+    <CardBox :pos="'top: 540px;left:600px'" :avatar="cardImg2" :title="'商都数迁'"
       :des="'因黄河泛滥、战乱等因素，商朝都城频繁迁移（如亳→隞→相→邢→殷），反映早期黄河下游水患对政治中心的影响。'"></CardBox>
     <Transition name="mask">
       <Mask v-show="showMask" @close-mask="(val) => showMask = val" :src="maskImage">
@@ -47,7 +47,6 @@
           </div>
           <div class="des-item flex-row">
             <p class="des">
-              <br>
               商朝前期因黄河频繁泛滥、水患频发，曾
               “五迁其都”。黄河改道、洪水淹没农田与聚落，迫使商王仲丁、祖乙等多次迁都避患。直至盘庚迁都至殷（今安阳），选位于太行山东麓高地、避开黄河主河道的洹水流域，既防水患又得灌溉之利，此后商朝 273
               年未再迁都，殷成为稳定都城，孕育了殷墟文明。
@@ -75,10 +74,10 @@ const showMask = ref<boolean>(false)
 
 <style scoped lang="less">
 .text-box-view1 {
-  width: 320px;
-  height: 390px;
+  width: 400px;
+  height: 500px;
   bottom: 0;
-  right: 100px;
+  right: 130px;
   transform: translateY(100%);
   animation: riseUp 1s ease;
   animation-delay: 1s;
