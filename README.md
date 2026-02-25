@@ -1,19 +1,2 @@
-# waterculture
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2025中国计算机设计大赛——黄河水文化（国赛二等奖作品）
+更新中……
